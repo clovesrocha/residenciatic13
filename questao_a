@@ -1,1 +1,25 @@
 Questão A
+class MiningFramework {
+  selectCommits(mergeCommits, year) {
+    return mergeCommits.filter(commit => commit.date.getFullYear() === year);
+  }
+
+  collectInformation(mergeCommit, author = true, lines = true, parents = false) {
+    let info = {};
+
+    if (author) info.author = mergeCommit.author;
+    if (lines) info.lines = mergeCommit.lines;
+    if (parents) info.parents = mergeCommit.parents;
+
+    return info;
+  }
+
+  processCommits(mergeCommits, year, author = true, lines = true, parents = false) {
+    const selectedCommits = this.selectCommits(mergeCommits, year);
+
+    for (const mergeCommit of selectedCommits) {
+      const info = this.collectInformation(mergeCommit, author, lines, parents);
+      // fazer algo com a informação coletada
+    }
+  }
+}
